@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Workout Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Start Your Workout Now</h1>
+  <div class="container" id="appContainer">
+    <div class="accent-flash" id="accentFlash"></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Mode</label>
+        <select id="modeSelect" aria-label="workout mode">
+          <option value="custom">Custom</option>
+          <option value="hiit">HIIT (Short intervals)</option>
+          <option value="endurance">Endurance (Longer exercise)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Number of Sets:</label>
+        <input type="number" id="totalSets" min="1" value="3">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Exercise Duration (seconds):</label>
+        <input type="number" id="exerciseDuration" min="1" value="30">
+      </div>
+      <div class="form-group">
+        <label>Rest Duration (seconds):</label>
+        <input type="number" id="restDuration" min="1" value="10">
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button id="startBtn">Start Workout</button>
+      <button id="pauseBtn" style="display:none">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <!-- Stopwatch -->
+    <div id="stopwatch">00:00</div>
+
+    <!-- Circular Countdown -->
+    <div class="circle-timer" aria-hidden="true">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <circle class="bg" cx="60" cy="60" r="54" />
+        <circle class="progress" cx="60" cy="60" r="54" />
+      </svg>
+    </div>
+
+    <!-- Flat Progress Bar -->
+    <div id="countdownProgress"><div id="progressBar"></div></div>
+
+    <div id="setLog"></div>
+    <div class="theme-toggle">
+      <button id="toggleThemeBtn">Toggle Theme</button>
+    </div>
+
+    <audio id="beepAudioShort"><source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg"></audio>
+  </div>
+
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

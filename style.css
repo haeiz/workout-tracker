@@ -1,0 +1,81 @@
+  :root {
+      --bg: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+      --text: #fff;
+      --btn-bg: rgba(255, 255, 255, 0.05);
+      --btn-hover: rgba(255, 255, 255, 0.15);
+      --accent: #00ff80;
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: rgba(0, 255, 128, 0.3);
+    }
+    [data-theme="light"] {
+      --bg: linear-gradient(135deg, #e6f2ff, #ffffff);
+      --text: #222;
+      --btn-bg: rgba(255, 255, 255, 0.7);
+      --btn-hover: rgba(255, 255, 255, 0.9);
+      --accent: #0077ff;
+      --border: rgba(0, 0, 0, 0.1);
+      --shadow: rgba(0, 119, 255, 0.3);
+    }
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: background-color 0.4s ease, color 0.4s ease; }
+    body { background: var(--bg); color: var(--text); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+    h1 { font-size: 2.2rem; font-weight: 600; text-align: center; margin-bottom: 12px; }
+    .container { position: relative; background-color: var(--btn-bg); backdrop-filter: blur(15px); padding: 22px; border-radius: 16px; box-shadow: 0 8px 25px var(--shadow); max-width: 520px; width: 100%; display: flex; flex-direction: column; gap: 12px; animation: fadeIn 0.6s ease; }
+
+    /* Accent flash overlay used for animated phase transitions */
+    .accent-flash {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), var(--accent));
+      opacity: 0;
+      mix-blend-mode: screen;
+    }
+    .accent-flash.show {
+      animation: flashAccent 700ms ease-out;
+    }
+    @keyframes flashAccent {
+      0% { opacity: 0.9; transform: scale(1.02); }
+      40% { opacity: 0.35; transform: scale(1.01); }
+      100% { opacity: 0; transform: scale(1); }
+    }
+
+    .form-row { display: flex; gap: 10px; }
+    .form-group { flex: 1; }
+    .form-group label { font-weight: 500; margin-bottom: 5px; display: block; }
+    .form-group input, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background-color: transparent; color: var(--text); font-size: 1rem; }
+    #modeSelect option {
+  background-color: #222; /* Dark background */
+  color: #fff; /* White text */
+  font-size: 16px;
+  padding: 10px; /* Not always respected */
+}
+
+
+    .button-group { display: flex; gap: 10px; }
+    button { padding: 12px; border: none; border-radius: 8px; background: var(--accent); color: #fff; font-size: 1em; font-weight: 600; cursor: pointer; transition: transform 0.2s ease, opacity 0.3s ease; box-shadow: 0 4px 15px var(--shadow); }
+    button:hover { transform: translateY(-2px); opacity: 0.95; }
+
+    #stopwatch { text-align: center; font-size: 2rem; font-weight: 600; margin: 10px 0; }
+    #countdownProgress { width: 100%; height: 12px; background: var(--border); border-radius: 8px; overflow: hidden; }
+    #progressBar { height: 100%; background: var(--accent); width: 0%; transition: width 1s linear; }
+    #setLog { max-height: 140px; overflow-y: auto; background: rgba(255, 255, 255, 0.03); padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; }
+    .set-complete { padding: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; animation: slideIn 0.3s ease; }
+    .set-complete::before { content: "🏆"; }
+
+    .theme-toggle { margin-top: 8px; text-align: center; }
+
+    .circle-timer { position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 6px; }
+    .circle-timer svg { transform: rotate(-90deg); }
+    circle { fill: none; stroke-width: 10; }
+    circle.bg { stroke: var(--border); }
+    circle.progress { stroke: var(--accent); stroke-linecap: round; stroke-dasharray: 339.292; stroke-dashoffset: 339.292; transition: stroke-dashoffset 1s linear; }
+
+    @media screen and (max-width: 480px) {
+      h1 { font-size: 1.7rem; }
+      .container { padding: 16px; }
+      .button-group { flex-direction: column; }
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { transform: translateX(-10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    
